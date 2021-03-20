@@ -1,13 +1,12 @@
 package dam.reprografia.recursos;
 
 public class Persona {
-	String dni, nombre, apellido1, apellido2;
+	String dni, nombre, apellido1;
 	
-	Persona(String dni, String nombre, String apellido1, String apellido2){
+	Persona(String dni, String nombre, String apellido1){
 		this.dni=dni;
 		this.nombre=nombre;
 		this.apellido1=apellido1;
-		this.apellido2=apellido2;
 	}
 
 	public String getDni() {
@@ -34,17 +33,10 @@ public class Persona {
 		this.apellido1 = apellido1;
 	}
 
-	public String getApellido2() {
-		return apellido2;
-	}
-
-	public void setApellido2(String apellido2) {
-		this.apellido2 = apellido2;
-	}
 
 	@Override
 	public String toString() {
-		return "Persona [dni=" + dni + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2 + "]";
+		return "Persona [dni=" + dni + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + "]";
 	}
 	
 }
