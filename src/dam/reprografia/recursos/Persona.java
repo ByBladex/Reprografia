@@ -1,7 +1,7 @@
 package dam.reprografia.recursos;
 
 public class Persona {
-	String dni, nombre, apellido1, apellido2;
+	private String dni, nombre, apellido1, apellido2;
 	
 	Persona(String dni, String nombre, String apellido1, String apellido2){
 		this.dni=dni;
@@ -44,7 +44,7 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return "Persona [dni=" + dni + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2 + "]";
+		return "Persona [Dni=" + dni + ", Nombre completo=" + nombre + " " + apellido1 + " " + apellido2 + "]";
 	}
 	
 }

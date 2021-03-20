@@ -1,0 +1,6 @@
+package dam.reprografia.recursos;
+
+public enum Curso {
+
+	PRIMEROESO, SEGUNDOESO, TERCEROESO, CUARTOESO, PRIMEROBACH, SEGUNDOBACH, PRIMERODAM, SEGUNDODAM;
+}
