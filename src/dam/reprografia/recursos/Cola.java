@@ -15,7 +15,7 @@ public class Cola {
 		cola.add(d);
 	}
 
-	public Documento imprimir() {
+	public Documento desenCola() {
 		return cola.remove(0);
 	}
 

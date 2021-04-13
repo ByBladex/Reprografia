@@ -1,6 +1,6 @@
 package dam.reprografia.recursos;
 
-public class Documento {
+public class Documento implements Comparable<Documento>{
 
 	private Integer id=1;
 	private static Integer idCount=1;
@@ -37,7 +37,19 @@ public class Documento {
 	public void setNumPaginas(Integer numPaginas) {
 		this.numPaginas = numPaginas;
 	}
-
+	
+	public int compareTo(Documento documento) {
+		Integer salida;
+		if(documento.getPersona().getNombre().compareToIgnoreCase(this.getPersona().getNombre())==0)
+			salida=0;
+		else if(documento.getPersona().getNombre().compareToIgnoreCase(this.getPersona().getNombre())>0)
+			salida=-1;
+		else
+			salida=1;
+		
+		return salida;
+	}
+	
 	@Override
 	public String toString() {
 		return "Documento [id=" + id + ", numPaginas=" + numPaginas + "]";
