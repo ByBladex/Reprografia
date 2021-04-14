@@ -2,7 +2,7 @@ package dam.reprografia.recursos;
 
 public class Documento implements Comparable<Documento>{
 
-	private Integer id=1;
+	private Integer id;
 	private static Integer idCount=1;
 	private Integer numPaginas;
 	private Persona persona;
@@ -49,9 +49,11 @@ public class Documento implements Comparable<Documento>{
 		
 		return salida;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Documento [id=" + id + ", numPaginas=" + numPaginas + "]";
+		return "Documento [id=" + id + ", numPaginas=" + numPaginas + ", persona=" + persona + "]";
 	}
+	
+
 }

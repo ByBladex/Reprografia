@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class GestionColas {
+	
+	private DAODocumentos daoDocumentos = new DAODocumentos();
 	private Cola colaProfesores;
 	private Cola colaAlumnos;
 	private ArrayList<Documento> listaHistorial = new ArrayList<Documento>();
@@ -21,13 +23,15 @@ public class GestionColas {
 			Integer numPaginas = siguienteDocumento.getNumPaginas();
 			listaHistorial.add(siguienteDocumento);
 			while(numPaginas>0) {
-				numPaginas-=10;
+				numPaginas -= 10;
 				if(numPaginas<0)
-					numPaginas=0;
+					numPaginas = 0;
 				Thread.sleep(1000);
 				Vista.mostrar(siguienteDocumento.toString()+" Quedan "+numPaginas+" páginas por imprimir");
 			}
 		}
+		else
+			Vista.mostrar("No quedan documentos que imprimir");
 	}
 	
 	public ArrayList<Documento> cargarDocumentos(){
@@ -56,7 +60,7 @@ public class GestionColas {
 			Vista.mostrar(colaAlumnos.ToString());
 		}
 		else
-			Vista.mostrar("Todos los documentos fueron impresos.");
+			Vista.mostrar("No hay ningún documento pendiente de impresión.");
 		
 		if(!listaHistorial.isEmpty()) {
 			Vista.mostrar("Documentos impresos: ");
@@ -75,6 +79,10 @@ public class GestionColas {
 			if(listaHistorial.get(i).getPersona().getDni().equalsIgnoreCase(dni))
 				colaDni.insertarCola(listaHistorial.get(i));
 		}
+		if(!colaDni.estaVacia())
+			Vista.mostrar(colaDni.ToString());
+		else
+			Vista.mostrar("El DNI introducido no concuerda");
 	}
 
 	public void ordenarDni() {

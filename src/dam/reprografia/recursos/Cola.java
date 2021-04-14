@@ -1,14 +1,13 @@
 package dam.reprografia.recursos;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Cola {
 
-	private List<Documento> cola;
+	private ArrayList<Documento> cola;
 	
 	private Cola() {
-		cola = new LinkedList<Documento>();
+		cola = new ArrayList<Documento>();
 	}
 
 	public void insertarCola(Documento d) {
@@ -29,8 +28,8 @@ public class Cola {
 	
 	public String ToString() {
 		StringBuilder cadena = new StringBuilder();
-		for(Documento valor:cola) {
-			cadena.append(valor+"\n");
+		for(Documento documento:cola) {
+			cadena.append(documento+"\n");
 		}
 		return cadena.toString();
 	}
