@@ -1,22 +1,47 @@
 package dam.reprografia.recursos;
 
 import java.util.LinkedHashMap;
+import java.sql.*;
 
 public class DAODocumentos {		
-		//HashMap: Los elementos que se insertan en el map no tienen un orden específico. No acepta clave duplicadas ni valores null.
+		//HashMap: Los elementos que se insertan en el map no tienen un orden especï¿½fico. No acepta clave duplicadas ni valores null.
 		//TreeMap: El mapa se ordena de forma "natural". Por ejemplo, si la clave son valores enteros los ordena de menor a mayor.
-		//LinkedHasMap: Los elementos se insertan en el map en el orden de llegada, no sigue ninguna ordenación, por ello realiza las búsquedas de forma más lenta que los demás.
+		//LinkedHasMap: Los elementos se insertan en el map en el orden de llegada, no sigue ninguna ordenaciï¿½n, por ello realiza las bï¿½squedas de forma mï¿½s lenta que los demï¿½s.
 		
-		public static LinkedHashMap<Integer, Documento> mapDocumentos = new LinkedHashMap<Integer, Documento>();
+		public static LinkedHashMap<Integer, Documento> mapDocumentos;
+                private static Connection conn;
 		
 		DAODocumentos(){
-	        DAODocumentos.mapDocumentos.put(1, new Documento(40, new Profesor("65148956L", "Amelia", "Sanchez", "Perez", Dpto.HISTORIA)));
-	        DAODocumentos.mapDocumentos.put(2, new Documento(25, new Alumno("56895146J", "Jaime", "Gallego", "Herrera", Curso.PRIMEROBACH)));
-	        DAODocumentos.mapDocumentos.put(3, new Documento(15, new Alumno("23156849F", "Luis", "Lopez", "Hortega", Curso.SEGUNDODAM)));
-	        DAODocumentos.mapDocumentos.put(4, new Documento(30, new Alumno("15487695A", "Andres", "Garcia", "Fernandez", Curso.PRIMERODAM)));
-	        DAODocumentos.mapDocumentos.put(5, new Documento(30, new Profesor("51648957K", "Carmen", "Jimenez", "Hurtado",Dpto.PLASTICA)));
+                    mapDocumentos = new LinkedHashMap<Integer, Documento>();
+                    conn = ConexionBD.getConexion();
+                    enlistarDocumentosProfesores(ConexionBD.queryDocumentosProf());
+                    enlistarDocumentosAlumnos(ConexionBD.queryDocumentosAlum());
+                    ConexionBD.cerrarConexionBD();
 		}
 		
+                private void enlistarDocumentosProfesores(ResultSet rs) {
+                    try {
+                        while (rs.next()){ 
+                            mapDocumentos.put(rs.getInt("id"), new Documento(rs.getInt("numPaginas"), new Profesor(rs.getString("dni"),rs.getString("nombre"),rs.getString("apellido1"),rs.getString("apellido2"),rs.getString("dpto"))));
+                        }
+                    } 
+		catch (SQLException ex) {
+			System.out.println("Error en la ejecuciÃ³n SQL: " + ex.getMessage());
+                        ex.printStackTrace();
+                    }
+                }
+                
+                private void enlistarDocumentosAlumnos(ResultSet rs) {
+                    try {
+                        while (rs.next()){ 
+                            mapDocumentos.put(rs.getInt("id"), new Documento(rs.getInt("numPaginas"), new Alumno(rs.getString("dni"),rs.getString("nombre"),rs.getString("apellido1"),rs.getString("apellido2"),rs.getString("curso"))));
+                        }
+                    } 
+		catch (SQLException ex) {
+			System.out.println("Error en la ejecuciÃ³n SQL: " + ex.getMessage());
+                        ex.printStackTrace();
+                    }
+                }
 
 		public static Cola obtenerColaProfesores() {
 	        Cola colaProfesores = Cola.crearCola();

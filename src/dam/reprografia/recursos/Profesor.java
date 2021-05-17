@@ -2,17 +2,17 @@ package dam.reprografia.recursos;
 
 public class Profesor extends Persona{
 
-	private Dpto dpto;
+	private String dpto;
 	
-	Profesor(String dni, String nombre, String apellido1, String apellido2, Dpto dpto) {
+	Profesor(String dni, String nombre, String apellido1, String apellido2, String dpto) {
 		super(dni, nombre, apellido1, apellido2);
 		this.dpto=dpto;
 	}
 	
-	public Dpto getDpto() {
+	public String getDpto() {
 		return dpto;
 	}
-	public void setDpto(Dpto dpto) {
+	public void setDpto(String dpto) {
 		this.dpto = dpto;
 	}
 

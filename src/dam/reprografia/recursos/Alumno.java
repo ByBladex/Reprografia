@@ -2,18 +2,18 @@ package dam.reprografia.recursos;
 
 public class Alumno extends Persona{
 
-	private Curso curso;
+	private String curso;
 	
-	Alumno(String dni, String nombre, String apellido1, String apellido2, Curso curso) {
+	Alumno(String dni, String nombre, String apellido1, String apellido2, String curso) {
 		super(dni, nombre, apellido1, apellido2);
 		this.curso=curso;
 	}
 
-	public Curso getCurso() {
+	public String getCurso() {
 		return curso;
 	}
 
-	public void setCurso(Curso curso) {
+	public void setCurso(String curso) {
 		this.curso = curso;
 	}
 
