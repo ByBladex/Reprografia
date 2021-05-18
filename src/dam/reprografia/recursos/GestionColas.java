@@ -5,15 +5,16 @@ import java.util.Collections;
 
 public class GestionColas {
 	
-	private DAODocumentos daoDocumentos = new DAODocumentos();
-	private Cola colaProfesores;
+	private DAODocumentosProfesores daoDocumentosP = new DAODocumentosProfesores();
+	private DAODocumentosAlumnos daoDocumentosA = new DAODocumentosAlumnos();
+        private Cola colaProfesores;
 	private Cola colaAlumnos;
 	private ArrayList<Documento> listaHistorial = new ArrayList<Documento>();
 
 	
 	GestionColas(){
-		colaProfesores = DAODocumentos.obtenerColaProfesores();
-		colaAlumnos = DAODocumentos.obtenerColaAlumnos();
+		colaProfesores = daoDocumentosP.obtenerColaProfesores();
+		colaAlumnos = daoDocumentosA.obtenerColaAlumnos();
 	}
 	
 	public void fotocopiar() throws InterruptedException {
@@ -27,7 +28,7 @@ public class GestionColas {
 				if(numPaginas<0)
 					numPaginas = 0;
 				Thread.sleep(1000);
-				Vista.mostrar(siguienteDocumento.toString()+" Quedan "+numPaginas+" páginas por imprimir");
+				Vista.mostrar(siguienteDocumento.toString()+" Quedan "+numPaginas+" pï¿½ginas por imprimir");
 			}
 		}
 		else
@@ -37,7 +38,10 @@ public class GestionColas {
 	public ArrayList<Documento> cargarDocumentos(){
 		ArrayList<Documento> listaDocumentos = new ArrayList<Documento>();
 		
-		for(Documento documento:DAODocumentos.mapDocumentos.values()) {
+		for(Documento documento:daoDocumentosP.mapDocumentosProfesores.values()) {
+			listaDocumentos.add(documento);
+		}
+                for(Documento documento:daoDocumentosA.mapDocumentosAlumnos.values()) {
 			listaDocumentos.add(documento);
 		}
 		return listaDocumentos;
@@ -55,12 +59,12 @@ public class GestionColas {
 	public void mostrarTodo() {
 		// TODO Auto-generated method stub
 		if(!colaProfesores.estaVacia() || !colaAlumnos.estaVacia()) {
-			Vista.mostrar("Documentos pendientes de impresión: ");
+			Vista.mostrar("Documentos pendientes de impresiï¿½n: ");
 			Vista.mostrar(colaProfesores.ToString());
 			Vista.mostrar(colaAlumnos.ToString());
 		}
 		else
-			Vista.mostrar("No hay ningún documento pendiente de impresión.");
+			Vista.mostrar("No hay ningï¿½n documento pendiente de impresiï¿½n.");
 		
 		if(!listaHistorial.isEmpty()) {
 			Vista.mostrar("Documentos impresos: ");
@@ -102,4 +106,8 @@ public class GestionColas {
 			Vista.mostrar(documento.toString());
 		}
 	}
+        
+        public ArrayList<Documento> getListaHistorial(){
+            return this.listaHistorial;
+        }
 }
