@@ -7,10 +7,10 @@ public class GestionColas {
 	
 	private DAODocumentosProfesores daoDocumentosP = new DAODocumentosProfesores();
 	private DAODocumentosAlumnos daoDocumentosA = new DAODocumentosAlumnos();
+        private DAODocumentosHistorial daoDocumentosH = new DAODocumentosHistorial();
         private Cola colaProfesores;
 	private Cola colaAlumnos;
-	private ArrayList<Documento> listaHistorial = new ArrayList<Documento>();
-
+	public ArrayList<Documento> listaHistorial = new ArrayList<Documento>();
 	
 	GestionColas(){
 		colaProfesores = daoDocumentosP.obtenerColaProfesores();
@@ -30,6 +30,16 @@ public class GestionColas {
 				Thread.sleep(1000);
 				Vista.mostrar(siguienteDocumento.toString()+" Quedan "+numPaginas+" p�ginas por imprimir");
 			}
+                        if(siguienteDocumento.getPersona() instanceof Profesor){
+                            Profesor hijo = (Profesor) siguienteDocumento.getPersona();
+                            daoDocumentosP.eliminarDocumento(siguienteDocumento);
+                            daoDocumentosH.insertarDocumentoProf(siguienteDocumento, hijo);
+                        }
+                        else if(siguienteDocumento.getPersona() instanceof Alumno){
+                            Alumno hijo = (Alumno) siguienteDocumento.getPersona();
+                            daoDocumentosA.eliminarDocumento(siguienteDocumento);
+                            daoDocumentosH.insertarDocumentoAlum(siguienteDocumento, hijo);
+                        }
 		}
 		else
 			Vista.mostrar("No quedan documentos que imprimir");
@@ -109,5 +119,17 @@ public class GestionColas {
         
         public ArrayList<Documento> getListaHistorial(){
             return this.listaHistorial;
+        }
+        
+        public ArrayList<Documento> getDocumentosAlumnos(){
+            ArrayList<Documento> array = new ArrayList<Documento>();
+            array.addAll(colaAlumnos.getCola());
+            return array;
+        }
+        
+        public ArrayList<Documento> getDocumentosProfesores(){
+            ArrayList<Documento> array = new ArrayList<Documento>();
+            array.addAll(colaProfesores.getCola());
+            return array;
         }
 }

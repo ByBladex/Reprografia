@@ -15,10 +15,9 @@ public class DAODocumentosProfesores {
                     mapDocumentosProfesores = new LinkedHashMap<Integer, Documento>();
                     conn = ConexionBD.getConexion();
                     enlistarDocumentosProfesores(ConexionBD.queryDocumentosProf());
-                    ConexionBD.cerrarConexionBD();
 		}
 		
-                private void enlistarDocumentosProfesores(ResultSet rs) {
+                private static void enlistarDocumentosProfesores(ResultSet rs) {
                     try {
                         while (rs.next()){ 
                             mapDocumentosProfesores.put(rs.getInt("id"), new Documento(rs.getInt("numPaginas"), new Profesor(rs.getString("dni"),rs.getString("nombre"),rs.getString("apellido1"),rs.getString("apellido2"),rs.getString("dpto"))));
@@ -38,4 +37,37 @@ public class DAODocumentosProfesores {
 	        }
 	        return colaProfesores;
 	    }
+                
+            public static void actualizarDAO(){
+                mapDocumentosProfesores.clear();
+                enlistarDocumentosProfesores(ConexionBD.queryDocumentosProf());
+            }
+            
+                
+                public int insertarDocumento(Documento documento, Profesor profesor) {
+                    conn = ConexionBD.getConexion();
+                    if (ConexionBD.queryInsertarDocumentoProf(documento, profesor) == 1) {
+                        enlistarDocumentosProfesores(ConexionBD.queryDocumentosProf());
+                        ConexionBD.cerrarConexionBD();
+                        return 1;  
+                    }
+                    else {
+                        ConexionBD.cerrarConexionBD();
+                        return 0;
+                    }
+                }
+                
+                public int eliminarDocumento(Documento documento) {
+                        // TODO Auto-generated method stub
+                        conn = ConexionBD.getConexion();
+                        if (ConexionBD.queryEliminarDocumentoProf(documento) == 1) {
+                            enlistarDocumentosProfesores(ConexionBD.queryDocumentosProf());
+                            ConexionBD.cerrarConexionBD();
+                            return 1;
+                        }
+                        else {
+                            ConexionBD.cerrarConexionBD();
+                            return 0;
+                        }
+                }
 }

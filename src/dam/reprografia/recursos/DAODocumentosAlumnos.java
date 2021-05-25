@@ -21,15 +21,14 @@ public class DAODocumentosAlumnos {
 		
 		public static LinkedHashMap<Integer, Documento> mapDocumentosAlumnos;
                 private static Connection conn;
-		
+                
 		DAODocumentosAlumnos(){
                     mapDocumentosAlumnos = new LinkedHashMap<Integer, Documento>();
                     conn = ConexionBD.getConexion();
                     enlistarDocumentosAlumnos(ConexionBD.queryDocumentosAlum());
-                    ConexionBD.cerrarConexionBD();
 		}
                 
-                private void enlistarDocumentosAlumnos(ResultSet rs) {
+                private static void enlistarDocumentosAlumnos(ResultSet rs) {
                     try {
                         while (rs.next()){ 
                             mapDocumentosAlumnos.put(rs.getInt("id"), new Documento(rs.getInt("numPaginas"), new Alumno(rs.getString("dni"),rs.getString("nombre"),rs.getString("apellido1"),rs.getString("apellido2"),rs.getString("curso"))));
@@ -41,7 +40,6 @@ public class DAODocumentosAlumnos {
                     }
                 }
                 
-                		
 		public static Cola obtenerColaAlumnos() {
 			Cola colaAlumnos = Cola.crearCola();
 			for(Documento valor : mapDocumentosAlumnos.values()) {
@@ -50,4 +48,40 @@ public class DAODocumentosAlumnos {
 			}
 			return colaAlumnos;
 		}
+                
+                public static void actualizarDAO(){
+                    mapDocumentosAlumnos.clear();
+                    enlistarDocumentosAlumnos(ConexionBD.queryDocumentosAlum());
+                }
+                
+                public int insertarDocumento(Documento documento, Alumno alumno) {
+                    conn = ConexionBD.getConexion();
+                    if (ConexionBD.queryInsertarDocumentoAlum(documento, alumno) == 1) {
+                        enlistarDocumentosAlumnos(ConexionBD.queryDocumentosAlum());
+                        ConexionBD.cerrarConexionBD();
+                        return 1;  
+                    }
+                    else {
+                        ConexionBD.cerrarConexionBD();
+                        return 0;
+                    }
+                }
+                
+                public int eliminarDocumento(Documento documento) {
+                        // TODO Auto-generated method stub
+                        conn = ConexionBD.getConexion();
+                        if (ConexionBD.queryEliminarDocumentoAlum(documento) == 1) {
+                            enlistarDocumentosAlumnos(ConexionBD.queryDocumentosAlum());
+                            ConexionBD.cerrarConexionBD();
+                            return 1;
+                        }
+                        else {
+                            ConexionBD.cerrarConexionBD();
+                            return 0;
+                        }
+                }
+                
+                public LinkedHashMap<Integer, Documento> getDocumentos(){
+                    return mapDocumentosAlumnos;
+                }
 }

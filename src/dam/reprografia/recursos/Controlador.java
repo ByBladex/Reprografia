@@ -1,11 +1,16 @@
 package dam.reprografia.recursos;
 
+import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Controlador {
 	
-	GestionColas gestionColas = new GestionColas();
+	static GestionColas gestionColas = new GestionColas();
+        DAODocumentosProfesores daoP = new DAODocumentosProfesores();
+        static DAODocumentosHistorial daoH = new DAODocumentosHistorial();
+        DAODocumentosAlumnos daoA = new DAODocumentosAlumnos();
+
 	Vista vista = new Vista();
 	
 	public void ejecutar() throws InterruptedException {
@@ -34,7 +39,6 @@ public class Controlador {
 		}
 	}
     public static void cargarTablasProfesores(JTable tabla){
-        DAODocumentosProfesores daoP = new DAODocumentosProfesores();
         DefaultTableModel modeloTabla = new DefaultTableModel();
         
         modeloTabla.addColumn("Id");
@@ -47,7 +51,7 @@ public class Controlador {
         
         String[] registros = new String[7];
         
-        for(Documento documento: daoP.mapDocumentosProfesores.values()){
+        for(Documento documento: gestionColas.getDocumentosProfesores()){
             registros[0] =  documento.getId().toString();
             registros[1] = documento.getNumPaginas().toString();
             registros[2] = documento.getPersona().getDni();
@@ -64,9 +68,8 @@ public class Controlador {
     }
 
     public static void cargarTablasAlumnos(JTable tabla){
-        DAODocumentosAlumnos daoA = new DAODocumentosAlumnos();
         DefaultTableModel modeloTabla = new DefaultTableModel();
-        
+
         modeloTabla.addColumn("Id");
         modeloTabla.addColumn("Num Paginas");
         modeloTabla.addColumn("Dni");
@@ -77,7 +80,7 @@ public class Controlador {
         
         String[] registros = new String[7];
         
-        for(Documento documento: daoA.mapDocumentosAlumnos.values()){
+        for(Documento documento: gestionColas.getDocumentosAlumnos()){
 
             registros[0] =  documento.getId().toString();
             registros[1] = documento.getNumPaginas().toString();
@@ -95,9 +98,7 @@ public class Controlador {
             tabla.setModel(modeloTabla);
     }
     
-    public static void cargarHistorial(JTable tabla){
-        GestionColas gestor = new GestionColas();
-        
+    public static void cargarHistorial(JTable tabla){        
         DefaultTableModel modeloTabla = new DefaultTableModel();
         
         modeloTabla.addColumn("Id");
@@ -106,11 +107,11 @@ public class Controlador {
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Apellido1");
         modeloTabla.addColumn("Apellido2");
-        modeloTabla.addColumn("Departamento");
+        modeloTabla.addColumn("Dpto/Curso");
         
         String[] registros = new String[7];
         
-        for(Documento documento: gestor.getListaHistorial()){
+        for(Documento documento: daoH.getListaHistorial()){
             registros[0] =  documento.getId().toString();
             registros[1] = documento.getNumPaginas().toString();
             registros[2] = documento.getPersona().getDni();
@@ -128,5 +129,16 @@ public class Controlador {
             modeloTabla.addRow(registros);
         };
             tabla.setModel(modeloTabla);
+    }
+    
+    public static int borrarDocumentoAlum(int key) {
+        DAODocumentosAlumnos dao = new DAODocumentosAlumnos();
+        
+        if (dao.eliminarDocumento(dao.getDocumentos().get(key)) == 1) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
     }
 }

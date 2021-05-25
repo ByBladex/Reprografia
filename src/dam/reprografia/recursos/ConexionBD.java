@@ -72,6 +72,42 @@ public class ConexionBD {
         return rs;
     }
     
+    public static ResultSet queryHistorialDocumentosProf(){ //Método para consultar datos de las tabla historialprofesores
+        conn = ConexionBD.getConexion();
+        try{
+            st = conn.createStatement();
+        }
+        catch (SQLException ex) {
+            System.out.println("Error en la ejecución SQL: " + ex.getMessage());
+	}
+        
+        try{
+            rs = st.executeQuery("select * from historialprofesores");
+        }
+	catch (SQLException ex) {
+            System.out.println("Error en la ejecución SQL: " + ex.getMessage());
+	}
+        return rs;
+    }
+    
+    public static ResultSet queryHistorialDocumentosAlum(){ //Método para consultar datos de las tabla historialalumnos
+        conn = ConexionBD.getConexion();
+        try{
+            st = conn.createStatement();
+        }
+        catch (SQLException ex) {
+            System.out.println("Error en la ejecución SQL: " + ex.getMessage());
+	}
+        
+        try{
+            rs = st.executeQuery("select * from historialalumnos");
+        }
+	catch (SQLException ex) {
+            System.out.println("Error en la ejecución SQL: " + ex.getMessage());
+	}
+        return rs;
+    }
+    
     public static int queryInsertarDocumentoProf(Documento documento,Profesor profesor){ //Método para insertar documentos en la tabla documentosprofesores
         Statement st = ConexionBD.st;
         try{
@@ -113,6 +149,48 @@ public class ConexionBD {
 	}
         return 1;
     }
+   
+    public static int queryInsertarDocumentoHistorialProf(Documento documento, Profesor profesor){ //Método para insertar documentos en la tabla documentosalumnos
+        Statement st = ConexionBD.st;
+        try{
+            st = conn.createStatement();
+        }
+        catch (SQLException ex) {
+            System.out.println("Error en la ejecución SQL: " + ex.getMessage());
+	}
+        
+        try{
+            st.executeUpdate("insert into historialprofesores (id, numPaginas, dni, nombre, apellido1, apellido2, dpto)"
+                    + "values('"+documento.getId()+"', '"+documento.getNumPaginas()+"', '"+documento.getPersona().getDni()
+                    +"', '"+profesor.getNombre()+"', '"+profesor.getApellido1()+"', '"+profesor.getApellido2()+"', '"+profesor.getDpto()+"')");
+        }
+	catch (SQLException ex) {
+            System.out.println("Error en la ejecución SQL: " + ex.getMessage());
+            return 0;
+	}
+        return 1;
+    }
+    
+    public static int queryInsertarDocumentoHistorialAlum(Documento documento, Alumno alumno){ //Método para insertar documentos en la tabla documentosalumnos
+        Statement st = ConexionBD.st;
+        try{
+            st = conn.createStatement();
+        }
+        catch (SQLException ex) {
+            System.out.println("Error en la ejecución SQL: " + ex.getMessage());
+	}
+        
+        try{
+            st.executeUpdate("insert into historialalumnos (id, numPaginas, dni, nombre, apellido1, apellido2, curso)"
+                    + "values('"+documento.getId()+"', '"+documento.getNumPaginas()+"', '"+documento.getPersona().getDni()
+                    +"', '"+alumno.getNombre()+"', '"+alumno.getApellido1()+"', '"+alumno.getApellido2()+"', '"+alumno.getCurso()+"')");
+        }
+	catch (SQLException ex) {
+            System.out.println("Error en la ejecución SQL: " + ex.getMessage());
+            return 0;
+	}
+        return 1;
+    }
     
     public static int queryEliminarDocumentoProf(Documento documento){
         Statement st = ConexionBD.st;
@@ -125,6 +203,25 @@ public class ConexionBD {
         
         try{
             st.executeUpdate("delete from documentosprofesores where id='"+documento.getId()+"'");
+        }
+	catch (SQLException ex) {
+            System.out.println("Error en la ejecución SQL: " + ex.getMessage());
+            return 0;
+	}
+        return 1;
+    }
+    
+    public static int queryEliminarDocumentoAlum(Documento documento){
+        Statement st = ConexionBD.st;
+        try{
+            st = conn.createStatement();
+        }
+        catch (SQLException ex) {
+            System.out.println("Error en la ejecución SQL: " + ex.getMessage());
+	}
+        
+        try{
+            st.executeUpdate("delete from documentosalumnos where id='"+documento.getId()+"'");
         }
 	catch (SQLException ex) {
             System.out.println("Error en la ejecución SQL: " + ex.getMessage());

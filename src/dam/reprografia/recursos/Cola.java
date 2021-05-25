@@ -17,6 +17,10 @@ public class Cola {
 	public Documento desenCola() {
 		return cola.remove(0);
 	}
+        
+        public ArrayList<Documento> getCola(){
+            return this.cola;
+        }
 
 	public boolean estaVacia() {
 		return cola.isEmpty();
