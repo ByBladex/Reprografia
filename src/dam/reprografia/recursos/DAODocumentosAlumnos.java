@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dam.reprografia.recursos;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,11 +14,11 @@ public class DAODocumentosAlumnos {
 		//TreeMap: El mapa se ordena de forma "natural". Por ejemplo, si la clave son valores enteros los ordena de menor a mayor.
 		//LinkedHasMap: Los elementos se insertan en el map en el orden de llegada, no sigue ninguna ordenaci�n, por ello realiza las b�squedas de forma m�s lenta que los dem�s.
 		
-		public static LinkedHashMap<Integer, Documento> mapDocumentosAlumnos;
+		public static ArrayList<Documento> mapDocumentosAlumnos;
                 private static Connection conn;
                 
 		DAODocumentosAlumnos(){
-                    mapDocumentosAlumnos = new LinkedHashMap<Integer, Documento>();
+                    mapDocumentosAlumnos = new ArrayList<Documento>();
                     conn = ConexionBD.getConexion();
                     enlistarDocumentosAlumnos(ConexionBD.queryDocumentosAlum());
 		}
@@ -31,7 +26,7 @@ public class DAODocumentosAlumnos {
                 private static void enlistarDocumentosAlumnos(ResultSet rs) {
                     try {
                         while (rs.next()){ 
-                            mapDocumentosAlumnos.put(rs.getInt("id"), new Documento(rs.getInt("numPaginas"), new Alumno(rs.getString("dni"),rs.getString("nombre"),rs.getString("apellido1"),rs.getString("apellido2"),rs.getString("curso"))));
+                            mapDocumentosAlumnos.add(new Documento(rs.getInt("id"), rs.getInt("numPaginas"), new Alumno(rs.getString("dni"),rs.getString("nombre"),rs.getString("apellido1"),rs.getString("apellido2"),rs.getString("curso"))));
                         }
                     } 
                     catch (SQLException ex) {
@@ -42,14 +37,14 @@ public class DAODocumentosAlumnos {
                 
 		public static Cola obtenerColaAlumnos() {
 			Cola colaAlumnos = Cola.crearCola();
-			for(Documento valor : mapDocumentosAlumnos.values()) {
+			for(Documento valor : mapDocumentosAlumnos) {
 				if(valor.getPersona() instanceof Alumno)
 					colaAlumnos.insertarCola(valor);
 			}
 			return colaAlumnos;
 		}
                 
-                public static void actualizarDAO(){
+                public void actualizarDAO(){
                     mapDocumentosAlumnos.clear();
                     enlistarDocumentosAlumnos(ConexionBD.queryDocumentosAlum());
                 }
@@ -81,7 +76,7 @@ public class DAODocumentosAlumnos {
                         }
                 }
                 
-                public LinkedHashMap<Integer, Documento> getDocumentos(){
-                    return mapDocumentosAlumnos;
+                public ArrayList<Documento> getDocumentos(){
+                    return this.mapDocumentosAlumnos;
                 }
 }

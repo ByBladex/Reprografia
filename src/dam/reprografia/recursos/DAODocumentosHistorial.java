@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author josel
  */
 public class DAODocumentosHistorial {
-    		//HashMap: Los elementos que se insertan en el map no tienen un orden espec�fico. No acepta clave duplicadas ni valores null.
+ /*   		//HashMap: Los elementos que se insertan en el map no tienen un orden espec�fico. No acepta clave duplicadas ni valores null.
 		//TreeMap: El mapa se ordena de forma "natural". Por ejemplo, si la clave son valores enteros los ordena de menor a mayor.
 		//LinkedHasMap: Los elementos se insertan en el map en el orden de llegada, no sigue ninguna ordenaci�n, por ello realiza las b�squedas de forma m�s lenta que los dem�s.
 		
@@ -32,7 +32,7 @@ public class DAODocumentosHistorial {
                 private void enlistarHistorialAlumnos(ResultSet rs) {
                     try {
                         while (rs.next()){ 
-                            listaHistorial.add(new Documento(rs.getInt("numPaginas"), new Alumno(rs.getString("dni"),rs.getString("nombre"),rs.getString("apellido1"),rs.getString("apellido2"),rs.getString("curso"))));
+                            listaHistorial.add(new Documento(rs.getInt("id"), rs.getInt("numPaginas"), new Alumno(rs.getString("dni"),rs.getString("nombre"),rs.getString("apellido1"),rs.getString("apellido2"),rs.getString("curso"))));
                         }
                     } 
                     catch (SQLException ex) {
@@ -44,7 +44,7 @@ public class DAODocumentosHistorial {
                 private void enlistarHistorialProfesores(ResultSet rs) {
                     try {
                         while (rs.next()){ 
-                            listaHistorial.add(new Documento(rs.getInt("numPaginas"), new Profesor(rs.getString("dni"),rs.getString("nombre"),rs.getString("apellido1"),rs.getString("apellido2"),rs.getString("dpto"))));
+                            listaHistorial.add(new Documento(rs.getInt("id"), rs.getInt("numPaginas"), new Profesor(rs.getString("dni"),rs.getString("nombre"),rs.getString("apellido1"),rs.getString("apellido2"),rs.getString("dpto"))));
                         }
                     } 
                     catch (SQLException ex) {
@@ -75,7 +75,7 @@ public class DAODocumentosHistorial {
                     if (ConexionBD.queryInsertarDocumentoHistorialAlum(documento, alumno) == 1) {
                         enlistarHistorialAlumnos(ConexionBD.queryHistorialDocumentosAlum());
                         ConexionBD.cerrarConexionBD();
-                        return 1;  
+                        return 1;
                     }
                     else {
                         ConexionBD.cerrarConexionBD();
@@ -85,5 +85,5 @@ public class DAODocumentosHistorial {
                 
                 public ArrayList<Documento> getListaHistorial(){
                     return this.listaHistorial;
-                }
+                }*/
 }

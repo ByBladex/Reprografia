@@ -7,10 +7,9 @@ public class GestionColas {
 	
 	private DAODocumentosProfesores daoDocumentosP = new DAODocumentosProfesores();
 	private DAODocumentosAlumnos daoDocumentosA = new DAODocumentosAlumnos();
-        private DAODocumentosHistorial daoDocumentosH = new DAODocumentosHistorial();
-        private Cola colaProfesores;
-	private Cola colaAlumnos;
-	public ArrayList<Documento> listaHistorial = new ArrayList<Documento>();
+        private static Cola colaProfesores;
+	private static Cola colaAlumnos;
+	public static ArrayList<Documento> listaHistorial = new ArrayList<Documento>();
 	
 	GestionColas(){
 		colaProfesores = daoDocumentosP.obtenerColaProfesores();
@@ -31,14 +30,18 @@ public class GestionColas {
 				Vista.mostrar(siguienteDocumento.toString()+" Quedan "+numPaginas+" p�ginas por imprimir");
 			}
                         if(siguienteDocumento.getPersona() instanceof Profesor){
-                            Profesor hijo = (Profesor) siguienteDocumento.getPersona();
-                            daoDocumentosP.eliminarDocumento(siguienteDocumento);
-                            daoDocumentosH.insertarDocumentoProf(siguienteDocumento, hijo);
+                            if(daoDocumentosP.eliminarDocumento(siguienteDocumento) == 1){
+                                System.out.println("*Profesor Eliminado*");
+                                daoDocumentosP.actualizarDAO();
+                            }
+                            
                         }
                         else if(siguienteDocumento.getPersona() instanceof Alumno){
-                            Alumno hijo = (Alumno) siguienteDocumento.getPersona();
-                            daoDocumentosA.eliminarDocumento(siguienteDocumento);
-                            daoDocumentosH.insertarDocumentoAlum(siguienteDocumento, hijo);
+                            if(daoDocumentosA.eliminarDocumento(siguienteDocumento) == 1){
+                                Vista.mostrar("*Alumno Eliminado*");
+                                daoDocumentosA.actualizarDAO();
+                            }
+                           
                         }
 		}
 		else
@@ -48,10 +51,10 @@ public class GestionColas {
 	public ArrayList<Documento> cargarDocumentos(){
 		ArrayList<Documento> listaDocumentos = new ArrayList<Documento>();
 		
-		for(Documento documento:daoDocumentosP.mapDocumentosProfesores.values()) {
+		for(Documento documento:daoDocumentosP.mapDocumentosProfesores) {
 			listaDocumentos.add(documento);
 		}
-                for(Documento documento:daoDocumentosA.mapDocumentosAlumnos.values()) {
+                for(Documento documento:daoDocumentosA.mapDocumentosAlumnos) {
 			listaDocumentos.add(documento);
 		}
 		return listaDocumentos;
@@ -116,6 +119,11 @@ public class GestionColas {
 			Vista.mostrar(documento.toString());
 		}
 	}
+        
+        public void recargarColas(){
+            this.colaProfesores = daoDocumentosP.obtenerColaProfesores();
+            this.colaAlumnos = daoDocumentosA.obtenerColaAlumnos();
+        }
         
         public ArrayList<Documento> getListaHistorial(){
             return this.listaHistorial;

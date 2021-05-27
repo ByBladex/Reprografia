@@ -3,13 +3,12 @@ package dam.reprografia.recursos;
 public class Documento implements Comparable<Documento>{
 
 	private Integer id;
-	private static Integer idCount=1;
 	private Integer numPaginas;
 	private Persona persona;
 
 	
-	Documento(Integer numPaginas, Persona persona){
-		this.id=idCount++;
+	Documento(Integer id, Integer numPaginas, Persona persona){
+		this.id=id;
 		this.numPaginas=numPaginas;
 		this.persona=persona;
 	}

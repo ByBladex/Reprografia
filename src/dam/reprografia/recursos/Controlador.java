@@ -8,7 +8,6 @@ public class Controlador {
 	
 	static GestionColas gestionColas = new GestionColas();
         DAODocumentosProfesores daoP = new DAODocumentosProfesores();
-        static DAODocumentosHistorial daoH = new DAODocumentosHistorial();
         DAODocumentosAlumnos daoA = new DAODocumentosAlumnos();
 
 	Vista vista = new Vista();
@@ -111,7 +110,7 @@ public class Controlador {
         
         String[] registros = new String[7];
         
-        for(Documento documento: daoH.getListaHistorial()){
+        for(Documento documento: gestionColas.getListaHistorial()){
             registros[0] =  documento.getId().toString();
             registros[1] = documento.getNumPaginas().toString();
             registros[2] = documento.getPersona().getDni();
@@ -131,10 +130,21 @@ public class Controlador {
             tabla.setModel(modeloTabla);
     }
     
-    public static int borrarDocumentoAlum(int key) {
+    public static int borrarDocumentoAlum(int id) {
         DAODocumentosAlumnos dao = new DAODocumentosAlumnos();
         
-        if (dao.eliminarDocumento(dao.getDocumentos().get(key)) == 1) {
+        if (dao.eliminarDocumento(dao.getDocumentos().get(id)) == 1) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+    
+    public static int borrarDocumentoProf(int id) {
+        DAODocumentosProfesores dao = new DAODocumentosProfesores();
+        
+        if (dao.eliminarDocumento(dao.getDocumentos().get(id)) == 1) {
             return 1;
         }
         else {
