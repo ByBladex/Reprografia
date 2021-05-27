@@ -27,18 +27,18 @@ public class GestionColas {
 				if(numPaginas<0)
 					numPaginas = 0;
 				Thread.sleep(1000);
-				Vista.mostrar(siguienteDocumento.toString()+" Quedan "+numPaginas+" p�ginas por imprimir");
+				Vista.mostrar(siguienteDocumento.toString()+" Quedan "+numPaginas+" paginas por imprimir");
 			}
                         if(siguienteDocumento.getPersona() instanceof Profesor){
                             if(daoDocumentosP.eliminarDocumento(siguienteDocumento) == 1){
-                                System.out.println("*Profesor Eliminado*");
+                                Vista.mostrar("*Documento de profesor impreso correctamente*");
                                 daoDocumentosP.actualizarDAO();
                             }
                             
                         }
                         else if(siguienteDocumento.getPersona() instanceof Alumno){
                             if(daoDocumentosA.eliminarDocumento(siguienteDocumento) == 1){
-                                Vista.mostrar("*Alumno Eliminado*");
+                                Vista.mostrar("*Documento de alumno impreso correctamente*");
                                 daoDocumentosA.actualizarDAO();
                             }
                            

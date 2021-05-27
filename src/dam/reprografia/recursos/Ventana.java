@@ -80,6 +80,9 @@ public class Ventana extends javax.swing.JFrame {
         btnClearHistorial = new javax.swing.JButton();
         btnEliminarProfe = new javax.swing.JButton();
         btnEliminarAlum = new javax.swing.JButton();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -350,43 +353,50 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel33.setText("Documentos impresos");
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel34.setText("Cola documentos alumnos");
+
+        jLabel35.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel35.setText("Cola documentos profesores");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(410, 410, 410)
-                        .addComponent(jLabel27)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(139, 139, 139)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel28)
-                                .addGap(9, 9, 9)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel28)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnEliminarProfe, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnFotocopiar)
-                                        .addGap(104, 104, 104)
-                                        .addComponent(btnEliminarAlum, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                        .addGap(103, 103, 103)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnEliminarAlum, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnClearHistorial)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel32)))))))
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel32))))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnClearHistorial)
+                        .addGap(0, 13, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -403,45 +413,68 @@ public class Ventana extends javax.swing.JFrame {
                         .addGap(44, 44, 44)
                         .addComponent(jLabel13)))
                 .addGap(180, 180, 180))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(380, 380, 380)
+                .addComponent(jLabel33)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel27)
+                .addGap(418, 418, 418))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(jLabel35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel34)
+                .addGap(144, 144, 144))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel34)
+                    .addComponent(jLabel35))
+                .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEliminarProfe)
-                            .addComponent(jLabel28))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEliminarAlum)
-                            .addComponent(jLabel32)))
-                    .addComponent(btnFotocopiar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 16, Short.MAX_VALUE)
+                        .addComponent(btnFotocopiar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel27)
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel33))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel32)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnEliminarAlum)
+                                    .addComponent(btnEliminarProfe)))
+                            .addComponent(jLabel28))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnClearHistorial)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(91, 91, 91)))
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel27)
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -472,6 +505,27 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btnAñadirProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirProfeActionPerformed
         // TODO add your handling code here:
+        if (txtNumPaginasProfe.getText().equals("") || txtDniProfe.getText().equals("") || txtNombreProfe.getText().equals("") 
+                ||  txtApellido1Profe.getText().equals("") || txtApellido2Profe.getText().equals("") || txtDpto.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Ningún campo debe estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            if (Controlador.insertarDocumentoProf(Integer.parseInt(txtNumPaginasProfe.getText()), txtDniProfe.getText(), txtNombreProfe.getText(),
+                    txtApellido1Profe.getText(), txtApellido2Profe.getText(), txtDpto.getText()) == 0) {
+                JOptionPane.showMessageDialog(this, "Error al insertar documento", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                daoDocumentosP.actualizarDAO();
+                gestor.recargarColas();
+                Controlador.cargarTablasProfesores(jTableProf); 
+                txtNumPaginasProfe.setText("");
+                txtDniProfe.setText("");
+                txtNombreProfe.setText("");
+                txtApellido1Profe.setText("");
+                txtApellido2Profe.setText("");
+                txtDpto.setText("");
+                Vista.mostrar("*Profesor insertado correctamente*");
+            }
+        }
     }//GEN-LAST:event_btnAñadirProfeActionPerformed
 
     private void txtApellido2AlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellido2AlumActionPerformed
@@ -480,6 +534,27 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btnAñadirAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirAlumActionPerformed
         // TODO add your handling code here:
+        if (txtNumPaginasAlum.getText().equals("") || txtDniAlum.getText().equals("") || txtNombreAlum.getText().equals("") 
+                ||  txtApellido1Alum.getText().equals("") || txtApellido2Alum.getText().equals("") || txtCurso.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Ningún campo debe estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            if (Controlador.insertarDocumentoAlumno(Integer.parseInt(txtNumPaginasAlum.getText()), txtDniAlum.getText(), txtNombreAlum.getText(),
+                    txtApellido1Alum.getText(), txtApellido2Alum.getText(), txtCurso.getText()) == 0) {
+                JOptionPane.showMessageDialog(this, "Error al insertar documento", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                daoDocumentosA.actualizarDAO();
+                gestor.recargarColas();
+                Controlador.cargarTablasAlumnos(jTableAlum); 
+                txtNumPaginasAlum.setText("");
+                txtDniAlum.setText("");
+                txtNombreAlum.setText("");
+                txtApellido1Alum.setText("");
+                txtApellido2Alum.setText("");
+                txtCurso.setText("");
+                Vista.mostrar("*Alumno insertado correctamente*");
+            }
+        }
     }//GEN-LAST:event_btnAñadirAlumActionPerformed
 
     private void txtCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCursoActionPerformed
@@ -490,14 +565,15 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (jTableAlum.getSelectedRow() >= 0) {
             if (jTableAlum.getSelectedRowCount() == 1) {
-                if (JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea eliminar el documento?", "Eliminar documento", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0 ) {
+                if (JOptionPane.showConfirmDialog(null, "¿Desea eliminar el documento?", "Eliminar documento", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0 ) {
                     if (Controlador.borrarDocumentoAlum(jTableAlum.getSelectedRow()) == 1) {
                         daoDocumentosA.actualizarDAO();
                         gestor.recargarColas();
                         Controlador.cargarTablasAlumnos(jTableAlum);
+                        Vista.mostrar("*Alumno eliminado correctamente*");
                     }
                     else {
-                        JOptionPane.showMessageDialog(this, "No se ha podido realizar la operación correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "No se ha podido eliminar el documento correctamente", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -518,14 +594,15 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (jTableProf.getSelectedRow() >= 0) {
             if (jTableProf.getSelectedRowCount() == 1) {
-                if (JOptionPane.showConfirmDialog(null, "¿Desea eliminar el documento id='"+jTableProf.getSelectedRow()+"'?", "Eliminar documento", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0 ) {
+                if (JOptionPane.showConfirmDialog(null, "¿Desea eliminar el documento?", "Eliminar documento", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0 ) {
                     if (Controlador.borrarDocumentoProf(jTableProf.getSelectedRow()) == 1) {
                         daoDocumentosP.actualizarDAO();
                         gestor.recargarColas();
                         Controlador.cargarTablasProfesores(jTableProf);
+                        Vista.mostrar("*Profesor eliminado correctamente*");
                     }
                     else {
-                        JOptionPane.showMessageDialog(this, "No se ha podido realizar la operación correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "No se ha podido eliminar el documento correctamente", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -591,6 +668,9 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

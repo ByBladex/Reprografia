@@ -118,8 +118,8 @@ public class ConexionBD {
 	}
         
         try{
-            st.executeUpdate("insert into documentosprofesores (id, numPaginas, dni, nombre, apellido1, apellido2, dpto)"
-                    + "values('"+documento.getId()+"', '"+documento.getNumPaginas()+"', '"+documento.getPersona().getDni()
+            st.executeUpdate("insert into documentosprofesores (numPaginas, dni, nombre, apellido1, apellido2, dpto)"
+                    + "values('"+documento.getNumPaginas()+"', '"+documento.getPersona().getDni()
                     +"', '"+profesor.getNombre()+"', '"+profesor.getApellido1()+"', '"+profesor.getApellido2()+"', '"+profesor.getDpto()+"')");
         }
 	catch (SQLException ex) {
@@ -139,8 +139,8 @@ public class ConexionBD {
 	}
         
         try{
-            st.executeUpdate("insert into documentosalumnos (id, numPaginas, dni, nombre, apellido1, apellido2, curso)"
-                    + "values('"+documento.getId()+"', '"+documento.getNumPaginas()+"', '"+documento.getPersona().getDni()
+            st.executeUpdate("insert into documentosalumnos (numPaginas, dni, nombre, apellido1, apellido2, curso)"
+                    + "values('"+documento.getNumPaginas()+"', '"+documento.getPersona().getDni()
                     +"', '"+alumno.getNombre()+"', '"+alumno.getApellido1()+"', '"+alumno.getApellido2()+"', '"+alumno.getCurso()+"')");
         }
 	catch (SQLException ex) {

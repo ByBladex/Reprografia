@@ -12,6 +12,11 @@ public class Documento implements Comparable<Documento>{
 		this.numPaginas=numPaginas;
 		this.persona=persona;
 	}
+        
+	Documento(Integer numPaginas, Persona persona){
+		this.numPaginas=numPaginas;
+		this.persona=persona;
+	}
 
 	public Persona getPersona() {
 		return persona;

@@ -151,4 +151,30 @@ public class Controlador {
             return 0;
         }
     }
+    
+    public static int insertarDocumentoProf(Integer numPaginas, String dni, String nombre, String apellido1, String apellido2, String dpto) {
+        Profesor profesor = new Profesor(dni, nombre, apellido1, apellido2, dpto);
+        Documento nuevoDocumento = new Documento(numPaginas, profesor);
+        DAODocumentosProfesores dao = new DAODocumentosProfesores();
+
+        if (dao.insertarDocumento(nuevoDocumento, profesor) == 1) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+    
+    public static int insertarDocumentoAlumno(Integer numPaginas, String dni, String nombre, String apellido1, String apellido2, String curso) {
+        Alumno alumno = new Alumno(dni, nombre, apellido1, apellido2, curso);
+        Documento nuevoDocumento = new Documento(numPaginas, alumno);
+        DAODocumentosAlumnos dao = new DAODocumentosAlumnos();
+
+        if (dao.insertarDocumento(nuevoDocumento, alumno) == 1) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
 }
