@@ -1,3 +1,6 @@
+DROP TABLE documentosalumnos;
+DROP TABLE documentosprofesores;
+
 CREATE TABLE `documentosalumnos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `numPaginas` int NOT NULL,
@@ -21,28 +24,6 @@ CREATE TABLE `documentosprofesores` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni_UNIQUE` (`dni`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `historialalumnos` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `numPaginas` int NOT NULL,
-  `dni` varchar(45) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `apellido1` varchar(45) NOT NULL,
-  `apellido2` varchar(45) NOT NULL,
-  `curso` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `historialprofesores` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `numPaginas` int NOT NULL,
-  `dni` varchar(45) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `apellido1` varchar(45) NOT NULL,
-  `apellido2` varchar(45) NOT NULL,
-  `dpto` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 insert into documentosalumnos (id, numPaginas, dni, nombre, apellido1, apellido2, curso) 
 values
