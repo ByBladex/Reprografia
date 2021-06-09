@@ -16,8 +16,9 @@ public class GestionColas {
 		colaAlumnos = daoDocumentosA.obtenerColaAlumnos();
 	}
 	
-	public void fotocopiar() throws InterruptedException {
-		Documento siguienteDocumento = cargarSiguienteDocumento();
+	public int fotocopiar() throws InterruptedException {
+            try{
+                Documento siguienteDocumento = cargarSiguienteDocumento();
 		
 		if(siguienteDocumento!=null) {
 			Integer numPaginas = siguienteDocumento.getNumPaginas();
@@ -41,11 +42,16 @@ public class GestionColas {
                                 Vista.mostrar("*Documento de alumno impreso correctamente*");
                                 daoDocumentosA.actualizarDAO();
                             }
-                           
                         }
 		}
-		else
-			Vista.mostrar("No quedan documentos que imprimir");
+                else{
+                    Vista.mostrar("No quedan documentos que imprimir");
+                }
+                return 1;
+            }
+            catch(InterruptedException e){
+                return 0;
+            }
 	}
 	
 	public ArrayList<Documento> cargarDocumentos(){
